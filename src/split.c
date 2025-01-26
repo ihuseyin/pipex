@@ -12,8 +12,11 @@ void	ft_free(char **result, size_t index)
 		while (result[i])
 			free(result[i++]);
 	}
-	while (index-- > 0)
-		free(result[index]);
+	else
+	{
+		while (index > 0)
+			free(result[--index]);
+	}
 	free(result);
 }
 
