@@ -2,12 +2,15 @@
 
 void	ft_free(char **result, size_t index)
 {
+	size_t	i;
+	
 	if (!result)
 		return ;
 	if (index == 0)
 	{
-		while (result[index])
-			index++;
+		i = 0;
+		while (result[i])
+			free(result[i++]);
 	}
 	while (index-- > 0)
 		free(result[index]);
