@@ -12,7 +12,7 @@ void	execution(char **argv, char **envp, int index)
 	{
 		ft_free(path, 0);
 		ft_free(exec_args, 0);
-		error("Malloc failed", 0);
+		exit(EXIT_FAILURE);
 	}
 	i = 0;
 	while (path[i])
