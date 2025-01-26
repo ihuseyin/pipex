@@ -3,7 +3,7 @@
 void	ft_free(char **result, size_t index)
 {
 	size_t	i;
-	
+
 	if (!result)
 		return ;
 	if (index == 0)
