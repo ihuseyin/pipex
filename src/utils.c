@@ -51,6 +51,8 @@ char	**find_pathenv(char *command, char *envp[])
 	int		i;
 	int		j;
 
+	if (!command)
+		return (NULL);
 	i = 0;
 	while (ft_strncmp(envp[i], "PATH=", 5))
 		i++;
