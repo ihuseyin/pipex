@@ -10,7 +10,7 @@ void	ft_free(char **result, size_t index)
 	{
 		i = 0;
 		while (result[i])
-			free(i++);
+			free(result[i++]);
 	}
 	else
 	{
