@@ -15,7 +15,7 @@ $(BONUS_DIR)/free_and_pathenv.c
 BONUS_OBJ = $(BONUS_SRC:$(BONUS_DIR)/%.c=$(OBJ_DIR)/bonus/%.o)
 
 NAME = $(BIN_DIR)/pipex
-BONUS_NAME = $(BIN_DIR)/pipex_bonus
+BONUS_NAME = $(BIN_DIR)/bonus/pipex
 
 all: $(NAME) $(BONUS_NAME)
 
@@ -23,7 +23,7 @@ man: $(NAME)
 
 bonus: $(BONUS_NAME)
 
-$(OBJ_DIR) $(BIN_DIR):
+$(OBJ_DIR) $(BIN_DIR) $(BIN_DIR)/bonus:
 	mkdir -p $@
 
 $(OBJ_DIR)/main $(OBJ_DIR)/bonus:
@@ -32,7 +32,7 @@ $(OBJ_DIR)/main $(OBJ_DIR)/bonus:
 $(NAME): $(OBJ) | $(BIN_DIR)
 	$(CC) $(OBJ) -o $(NAME)
 
-$(BONUS_NAME): $(BONUS_OBJ) | $(BIN_DIR)
+$(BONUS_NAME): $(BONUS_OBJ) | $(BIN_DIR)/bonus
 	$(CC) $(BONUS_OBJ) -o $(BONUS_NAME)
 
 $(OBJ_DIR)/main/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)/main
