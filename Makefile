@@ -1,4 +1,4 @@
-CC = clang
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = src
@@ -12,10 +12,12 @@ $(OBJ_DIR) $(BIN_DIR):
 $(OBJ_DIR)/main $(OBJ_DIR)/bonus:
 	mkdir -p $@
 
-SRC = $(wildcard $(SRC_DIR)/*.c)
+SRC = $(SRC_DIR)/pipex.c $(SRC_DIR)/utils.c $(SRC_DIR)/split.c
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/main/%.o)
 
-BONUS_SRC = $(wildcard $(BONUS_DIR)/*.c)
+BONUS_SRC = $(BONUS_DIR)/pipex_bonus.c $(BONUS_DIR)/utils_bonus.c $(BONUS_DIR)/split_bonus.c \
+$(BONUS_DIR)/get_next_line.c $(BONUS_DIR)/child_process.c $(BONUS_DIR)/here_doc.c \
+$(BONUS_DIR)/free_and_pathenv.c
 BONUS_OBJ = $(BONUS_SRC:$(BONUS_DIR)/%.c=$(OBJ_DIR)/bonus/%.o)
 
 NAME = $(BIN_DIR)/pipex
