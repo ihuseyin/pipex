@@ -6,12 +6,6 @@ BONUS_DIR = bonus
 OBJ_DIR = obj
 BIN_DIR = bin
 
-$(OBJ_DIR) $(BIN_DIR):
-	mkdir -p $@
-
-$(OBJ_DIR)/main $(OBJ_DIR)/bonus:
-	mkdir -p $@
-
 SRC = $(SRC_DIR)/pipex.c $(SRC_DIR)/utils.c $(SRC_DIR)/split.c
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/main/%.o)
 
@@ -28,6 +22,12 @@ all: $(NAME) $(BONUS_NAME)
 man: $(NAME)
 
 bonus: $(BONUS_NAME)
+
+$(OBJ_DIR) $(BIN_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)/main $(OBJ_DIR)/bonus:
+	mkdir -p $@
 
 $(NAME): $(OBJ) | $(BIN_DIR)
 	$(CC) $(OBJ) -o $(NAME)
