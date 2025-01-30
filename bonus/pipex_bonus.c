@@ -34,15 +34,22 @@ int	main(int argc, char *argv[], char *envp[])
 	int	pipefd[SIZE][2];
 	int	status;
 
-	if (!ft_strncmp(argv[1], "here_doc", 8))
-		status = here_doc(argc, argv, envp);
-	else
+	if (argc < 5 || argc - 2 > SIZE)
 	{
-		if (argc < 5 || argc - 2 > SIZE)
+		errno = EINVAL;
+		error("Usage: ./pipex file1 cmd1 cmd2 ... cmdn file2\nError", 0);
+	}
+	if (!ft_strncmp(argv[1], "here_doc", 8))
+	{
+		if (argc != 6)
 		{
 			errno = EINVAL;
-			error("Usage: ./pipex file1 cmd1 cmd2 ... cmdn file2\nError", 0);
+			error("Usage: ./pipex here_doc LIMITER cmd1 cmd2 file\nError", 0);
 		}
+		status = here_doc(argc, argv, envp);
+	}
+	else
+	{
 		pipefd[SIZE - 1][0] = argc - 4;
 		if (pipe(pipefd[0]) == -1)
 			error("First pipe failed", 0);
