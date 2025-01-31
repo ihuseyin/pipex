@@ -1,7 +1,10 @@
 #include "pipex_bonus.h"
+#include <stdio.h>
+#include <unistd.h>
 
 void	error(char *message, int pipe_fd[])
 {
+	perror(message);
 	if (pipe_fd != NULL)
 	{
 		if (pipe_fd[0] > 0)
@@ -9,7 +12,6 @@ void	error(char *message, int pipe_fd[])
 		if (pipe_fd[1] > 0)
 			close(pipe_fd[1]);
 	}
-	perror(message);
 	exit(EXIT_FAILURE);
 }
 
