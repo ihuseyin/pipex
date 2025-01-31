@@ -78,7 +78,7 @@ static void	first_cmd(char **argv, char **envp, int pipefd[2][2], int *status)
 	close(pipefd[0][0]);
 }
 
-int	here_doc(int argc, char **argv, char **envp)
+int	here_doc(char **argv, char **envp)
 {
 	int	pipefd[2][2];
 	int	status;
