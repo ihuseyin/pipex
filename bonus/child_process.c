@@ -1,4 +1,6 @@
 #include "pipex_bonus.h"
+#include <unistd.h>
+#include <fcntl.h>
 
 void	execution(char **argv, char **envp, int index)
 {
