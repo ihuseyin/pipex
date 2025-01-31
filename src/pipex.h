@@ -1,13 +1,7 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <fcntl.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
-# include <sys/wait.h>
-# include <errno.h>
 
 size_t	ft_strlen(const char *s);
 char	**find_pathenv(char *command, char *envp[]);
