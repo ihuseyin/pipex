@@ -1,4 +1,6 @@
 #include "pipex.h"
+#include <stdio.h>
+#include <unistd.h>
 
 size_t	ft_strlen(const char *s)
 {
@@ -74,6 +76,7 @@ char	**find_pathenv(char *command, char *envp[])
 
 void	error(char *message, int pipe_fd[])
 {
+	perror(message);
 	if (pipe_fd != NULL)
 	{
 		if (pipe_fd[0] > 0)
@@ -81,6 +84,5 @@ void	error(char *message, int pipe_fd[])
 		if (pipe_fd[1] > 0)
 			close(pipe_fd[1]);
 	}
-	perror(message);
 	exit(EXIT_FAILURE);
 }
