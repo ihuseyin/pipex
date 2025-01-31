@@ -1,4 +1,8 @@
 #include "pipex.h"
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/wait.h>
+#include <errno.h>
 
 static void	exec(char **argv, char **envp, int index)
 {
@@ -96,7 +100,6 @@ static int	execution(int argc, char **argv, char **envp, int *pipe_fd)
 		}
 		waitpid(pid, &status, 0);
 		close(pipe_fd[1]);
-		pipe_fd[1] = -1;
 		index++;
 	}
 	return (WEXITSTATUS(status));
