@@ -5,7 +5,7 @@ static char	*ft_read_line(char **remainder)
 {
 	char	*newline;
 	char	*line;
-1
+
 	if (!*remainder)
 		return (NULL);
 	newline = ft_strchr(*remainder, '\n');
