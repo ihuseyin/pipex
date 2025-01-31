@@ -1,4 +1,7 @@
 #include "pipex_bonus.h"
+#include <unistd.h>
+#include <sys/wait.h>
+#include <errno.h>
 
 static int	par_process(int argc, char **argv, char **envp, int pipefd[SIZE][2])
 {
@@ -18,7 +21,6 @@ static int	par_process(int argc, char **argv, char **envp, int pipefd[SIZE][2])
 		if (pid == 0)
 			child_process(argv, envp, pipefd, index);
 		close(pipefd[index][1]);
-		pipefd[index][1] = -1;
 		close(pipefd[index - 1][0]);
 		waitpid(pid, &status, 0);
 		if (argc - 3 > ++index)
@@ -46,7 +48,7 @@ int	main(int argc, char *argv[], char *envp[])
 			errno = EINVAL;
 			error("Usage: ./pipex here_doc LIMITER cmd1 cmd2 file\nError", 0);
 		}
-		status = here_doc(argc, argv, envp);
+		status = here_doc(argv, envp);
 	}
 	else
 	{
