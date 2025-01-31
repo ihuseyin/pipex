@@ -1,4 +1,7 @@
 #include "pipex_bonus.h"
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/wait.h>
 
 static void	search_limiter(char *limiter, int *pipefd)
 {
@@ -80,11 +83,6 @@ int	here_doc(int argc, char **argv, char **envp)
 	int	pipefd[2][2];
 	int	status;
 
-	if (argc != 6)
-	{
-		errno = EINVAL;
-		error("Usage: ./pipex here_doc LIMITER cmd1 cmd2 file\nError", 0);
-	}
 	if (pipe(pipefd[0]) == -1)
 		error("Pipe failed", 0);
 	search_limiter(argv[2], pipefd[0]);
@@ -95,7 +93,6 @@ int	here_doc(int argc, char **argv, char **envp)
 	}
 	first_cmd(argv, envp, pipefd, &status);
 	close(pipefd[1][1]);
-	pipefd[1][1] = -1;
 	last_cmd(argv, envp, pipefd[1], &status);
 	return (WEXITSTATUS(status));
 }
