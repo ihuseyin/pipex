@@ -1,13 +1,7 @@
 #ifndef PIPEX_BONUS_H
 # define PIPEX_BONUS_H
 
-# include <fcntl.h>
 # include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
-# include <sys/wait.h>
-# include <errno.h>
 
 // maximum accessible pipe size
 # ifndef SIZE
@@ -24,7 +18,7 @@ void	ft_free(char **result, size_t index);
 char	**ft_split(const char *s, char c);
 
 void	execution(char **argv, char **envp, int index);
-int		here_doc(int argc, char **argv, char **envp);
+int		here_doc(char **argv, char **envp);
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
